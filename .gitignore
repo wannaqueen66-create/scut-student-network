@@ -3,3 +3,7 @@
 .DS_Store
 scut_portal.conf
 .env
+*.curl
+*.har
+capture*
+cookies.txt

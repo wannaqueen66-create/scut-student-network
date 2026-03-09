@@ -16,7 +16,7 @@ AC_NAME="${AC_NAME:-example_ac}"
 HOST="${HOST:-portal.example.edu.cn}"
 HOST_IP="${HOST_IP:-}"
 PORT="${PORT:-802}"
-LOGIN_URL="https://${HOST}:${PORT}/eportal/portal/login"
+LOGIN_URL="https://${HOST}:${PORT}${LOGIN_PATH}"
 
 LOG="${LOG:-/tmp/scut_portal_login.log}"
 LOCK_DIR="/tmp/scut_portal_login.lock"
@@ -33,6 +33,21 @@ ENABLE_IFACE_RESET="${ENABLE_IFACE_RESET:-0}"
 DEBUG="${DEBUG:-0}"
 PORTAL_USER="${PORTAL_USER:-${USER:-}}"
 PORTAL_PASS="${PORTAL_PASS:-${PASS:-}}"
+LOGIN_PATH="${LOGIN_PATH:-/eportal/portal/login}"
+LOGIN_CALLBACK="${LOGIN_CALLBACK:-dr1003}"
+LOGIN_METHOD="${LOGIN_METHOD:-1}"
+REFERER_URL="${REFERER_URL:-https://${HOST}/}"
+USER_AGENT="${USER_AGENT:-Mozilla/5.0}"
+WLAN_USER_IPV6="${WLAN_USER_IPV6:-}"
+WLAN_AC_IP="${WLAN_AC_IP:-}"
+JS_VERSION="${JS_VERSION:-4.1.3}"
+TERMINAL_TYPE="${TERMINAL_TYPE:-1}"
+LANG_VALUE="${LANG_VALUE:-zh-cn}"
+MAC_TYPE="${MAC_TYPE:-0}"
+PROGRAM_INDEX_PREFIX="${PROGRAM_INDEX_PREFIX:-aGPKgC}"
+PAGE_INDEX_PREFIX="${PAGE_INDEX_PREFIX:-OYOGQG}"
+V_VALUE="${V_VALUE:-1500}"
+LOGIN_SUCCESS_MSG="${LOGIN_SUCCESS_MSG:-512}"
 
 log() {
     echo "[$(date '+%F %T')] $*" >> "$LOG"
@@ -133,24 +148,24 @@ portal_login_once() {
 
     RESP="$($CURL_BIN -k -4 --noproxy '*' --interface "$IFACE" -m "$TIMEOUT_LOGIN" -sS --get "$LOGIN_URL" \
         ${RESOLVE_ARG} \
-        -H "Referer: https://${HOST}/" \
-        -H 'User-Agent: Mozilla/5.0' \
-        --data-urlencode "callback=dr1003" \
-        --data-urlencode "login_method=1" \
+        -H "Referer: ${REFERER_URL}" \
+        -H "User-Agent: ${USER_AGENT}" \
+        --data-urlencode "callback=${LOGIN_CALLBACK}" \
+        --data-urlencode "login_method=${LOGIN_METHOD}" \
         --data-urlencode "user_account=${PORTAL_USER}" \
         --data-urlencode "user_password=${PORTAL_PASS}" \
         --data-urlencode "wlan_user_ip=${USER_IP}" \
-        --data-urlencode "wlan_user_ipv6=" \
+        --data-urlencode "wlan_user_ipv6=${WLAN_USER_IPV6}" \
         --data-urlencode "wlan_user_mac=${USER_MAC}" \
-        --data-urlencode "wlan_ac_ip=" \
+        --data-urlencode "wlan_ac_ip=${WLAN_AC_IP}" \
         --data-urlencode "wlan_ac_name=${AC_NAME}" \
-        --data-urlencode 'jsVersion=4.1.3' \
-        --data-urlencode 'terminal_type=1' \
-        --data-urlencode 'lang=zh-cn' \
-        --data-urlencode 'mac_type=0' \
-        --data-urlencode "program_index=aGPKgC${TS}" \
-        --data-urlencode "page_index=OYOGQG${TS}" \
-        --data-urlencode 'v=1500' \
+        --data-urlencode "jsVersion=${JS_VERSION}" \
+        --data-urlencode "terminal_type=${TERMINAL_TYPE}" \
+        --data-urlencode "lang=${LANG_VALUE}" \
+        --data-urlencode "mac_type=${MAC_TYPE}" \
+        --data-urlencode "program_index=${PROGRAM_INDEX_PREFIX}${TS}" \
+        --data-urlencode "page_index=${PAGE_INDEX_PREFIX}${TS}" \
+        --data-urlencode "v=${V_VALUE}" \
         2>&1)"
     RC=$?
     return "$RC"
@@ -205,8 +220,8 @@ main() {
             exit 0
         fi
 
-        if echo "$RESP" | grep -q '"msg":"512"'; then
-            log "soft success or already-online msg=512 iface=$IFACE ip=$USER_IP"
+        if echo "$RESP" | grep -q "\"msg\":\"${LOGIN_SUCCESS_MSG}\""; then
+            log "soft success or already-online msg=${LOGIN_SUCCESS_MSG} iface=$IFACE ip=$USER_IP"
             exit 0
         fi
 

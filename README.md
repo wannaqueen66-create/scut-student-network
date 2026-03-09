@@ -128,6 +128,13 @@ PORT="802"
 - `HOST`: portal host / 门户域名
 - `HOST_IP`: optional fixed IP for `--resolve` / 可选固定 IP
 - `PORT`: portal port / 门户端口
+- `LOGIN_PATH`: login endpoint path / 登录接口路径
+- `LOGIN_CALLBACK`: callback value if required / 某些接口需要的 callback 参数
+- `LOGIN_METHOD`: login method field / 登录方式字段
+- `REFERER_URL`: request referer / 请求 Referer
+- `USER_AGENT`: request user agent / 请求 User-Agent
+- `JS_VERSION`: frontend version field if required / 某些接口要求的前端版本字段
+- `LOGIN_SUCCESS_MSG`: success-like response code used by your portal / 门户返回的“已在线/软成功”消息码
 - `DEBUG`: set to `1` only when debugging / 调试时可设为 `1`
 - `ENABLE_IFACE_RESET`: whether to run `ifdown/ifup` after repeated failures / 是否在多次失败后重置网卡
 
@@ -228,12 +235,32 @@ This runs the script every 5 minutes.
 - Keep `DEBUG=0` by default in production
 - Only use this in networks you are authorized to access
 
+Never publish the following items in your repository, issue tracker, screenshots, or chat logs:
+
+- real usernames or student IDs
+- real passwords
+- raw cURL commands copied from the browser without redaction
+- cookies, tokens, authorization headers, or session identifiers
+- your real MAC address
+- your current private IP address if it appears in request samples
+- full response bodies if they contain account or session details
+
 **中文**
 
 - 不要提交真实账号密码
 - 不要公开原始 cURL、Cookie、Token 等敏感信息
 - 生产环境默认保持 `DEBUG=0`
 - 仅在你有合法授权的网络环境中使用
+
+以下内容不要出现在仓库、issue、截图或聊天记录里：
+
+- 真实账号、学号
+- 真实密码
+- 未打码的浏览器复制 cURL 原文
+- Cookie、Token、鉴权头、会话标识
+- 你的真实 MAC 地址
+- 抓包样例里出现的当前私网 IP
+- 含账号或会话细节的完整响应体
 
 ## Limitations / 限制
 

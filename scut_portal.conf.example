@@ -20,6 +20,23 @@ HOST="portal.example.edu.cn"
 HOST_IP=""
 PORT="802"
 
+# Request template (adjust these according to your packet capture result)
+LOGIN_PATH="/eportal/portal/login"
+LOGIN_CALLBACK="dr1003"
+LOGIN_METHOD="1"
+REFERER_URL="https://portal.example.edu.cn/"
+USER_AGENT="Mozilla/5.0"
+WLAN_USER_IPV6=""
+WLAN_AC_IP=""
+JS_VERSION="4.1.3"
+TERMINAL_TYPE="1"
+LANG_VALUE="zh-cn"
+MAC_TYPE="0"
+PROGRAM_INDEX_PREFIX="aGPKgC"
+PAGE_INDEX_PREFIX="OYOGQG"
+V_VALUE="1500"
+LOGIN_SUCCESS_MSG="512"
+
 # Logging
 LOG="/tmp/scut_portal_login.log"
 DEBUG="0"
