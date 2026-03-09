@@ -249,6 +249,22 @@ Never publish the following items in your repository, issue tracker, screenshots
 - your current private IP address if it appears in request samples
 - full response bodies if they contain account or session details
 
+### Log Safety / 日志安全
+
+**English**
+
+- Log files may contain failure reasons, partial response content, or local runtime information
+- Keep `DEBUG=0` unless you are actively troubleshooting
+- Do not publish log files if they may contain account, session, MAC, IP, or portal response details
+- If you need to share a log for debugging, review and redact it first
+
+**中文**
+
+- 日志文件可能包含失败原因、部分响应内容或本地运行信息
+- 除非正在排障，否则请保持 `DEBUG=0`
+- 如果日志中可能包含账号、会话、MAC、IP 或认证响应细节，请不要公开日志文件
+- 如果必须分享日志用于排障，请先人工检查并打码
+
 **中文**
 
 - 不要提交真实账号密码
