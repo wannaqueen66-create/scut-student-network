@@ -115,7 +115,7 @@ PORTAL_PASS="your-portal-password"
 IFACE="apclix0"
 AC_NAME="example_ac"
 HOST="portal.example.edu.cn"
-HOST_IP="203.0.113.10"
+HOST_IP=""
 PORT="802"
 ```
 
@@ -130,6 +130,22 @@ PORT="802"
 - `PORT`: portal port / 门户端口
 - `DEBUG`: set to `1` only when debugging / 调试时可设为 `1`
 - `ENABLE_IFACE_RESET`: whether to run `ifdown/ifup` after repeated failures / 是否在多次失败后重置网卡
+
+### How to obtain these parameters / 这些参数怎么获取
+
+**English**
+
+- `AC_NAME`: usually from the portal page URL (for example `wlanacname=...`) or from the login request parameters (for example `wlan_ac_name=...`)
+- `HOST`: from the hostname part of the login request URL
+- `PORT`: from the port in the login request URL; if omitted, it is usually `80` for HTTP or `443` for HTTPS
+- `HOST_IP`: optional; only needed if DNS resolution is unstable or you intentionally want a fixed address. You can obtain it with `nslookup`, `ping`, or `getent hosts`
+
+**中文**
+
+- `AC_NAME`：通常来自登录页 URL（例如 `wlanacname=...`）或登录请求参数（例如 `wlan_ac_name=...`）
+- `HOST`：来自登录请求 URL 的域名部分
+- `PORT`：来自登录请求 URL 的端口；如果 URL 里没写，通常 HTTP 是 `80`，HTTPS 是 `443`
+- `HOST_IP`：可选项；只有当 DNS 解析不稳定，或你明确需要固定解析结果时才填写。可通过 `nslookup`、`ping`、`getent hosts` 获取
 
 ## How to Capture Portal Parameters / 如何抓取 Portal 参数
 

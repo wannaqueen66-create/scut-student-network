@@ -10,9 +10,14 @@ PORTAL_PASS="your-portal-password"
 IFACE="apclix0"
 
 # Portal parameters
+# How to get them:
+# - AC_NAME: from portal page URL (e.g. wlanacname=...) or login request params
+# - HOST: from login request URL hostname
+# - PORT: from login request URL port
+# - HOST_IP: optional; leave empty unless you need a fixed DNS resolution result
 AC_NAME="example_ac"
 HOST="portal.example.edu.cn"
-HOST_IP="203.0.113.10"
+HOST_IP=""
 PORT="802"
 
 # Logging

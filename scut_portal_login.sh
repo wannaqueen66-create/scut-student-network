@@ -12,9 +12,9 @@ fi
 . "$CONFIG_FILE"
 
 IFACE="${IFACE:-apclix0}"
-AC_NAME="${AC_NAME:-wushan}"
-HOST="${HOST:-s.scut.edu.cn}"
-HOST_IP="${HOST_IP:-202.38.210.131}"
+AC_NAME="${AC_NAME:-example_ac}"
+HOST="${HOST:-portal.example.edu.cn}"
+HOST_IP="${HOST_IP:-}"
 PORT="${PORT:-802}"
 LOGIN_URL="https://${HOST}:${PORT}/eportal/portal/login"
 
@@ -126,9 +126,14 @@ portal_login_once() {
     USER_MAC="$2"
     TS="$(date +%s)"
 
+    RESOLVE_ARG=""
+    if [ -n "${HOST_IP:-}" ]; then
+        RESOLVE_ARG="--resolve ${HOST}:${PORT}:${HOST_IP}"
+    fi
+
     RESP="$($CURL_BIN -k -4 --noproxy '*' --interface "$IFACE" -m "$TIMEOUT_LOGIN" -sS --get "$LOGIN_URL" \
-        --resolve "${HOST}:${PORT}:${HOST_IP}" \
-        -H 'Referer: https://s.scut.edu.cn/' \
+        ${RESOLVE_ARG} \
+        -H "Referer: https://${HOST}/" \
         -H 'User-Agent: Mozilla/5.0' \
         --data-urlencode "callback=dr1003" \
         --data-urlencode "login_method=1" \
