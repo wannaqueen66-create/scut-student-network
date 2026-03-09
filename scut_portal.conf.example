@@ -1,0 +1,31 @@
+# Example configuration for scut_portal_login.sh
+# Copy this file to your local machine and adjust the values for your network.
+# Do NOT commit real credentials.
+
+# Credentials
+PORTAL_USER="your-student-id-or-portal-username"
+PORTAL_PASS="your-portal-password"
+
+# Network interface
+IFACE="apclix0"
+
+# Portal parameters
+AC_NAME="wushan"
+HOST="s.scut.edu.cn"
+HOST_IP="202.38.210.131"
+PORT="802"
+
+# Logging
+LOG="/tmp/scut_portal_login.log"
+DEBUG="0"
+
+# Retry behavior
+TIMEOUT_CHECK="5"
+TIMEOUT_LOGIN="12"
+MAX_IP_RETRY="3"
+FAIL_RESET_THRESHOLD="2"
+LOGIN_ATTEMPTS="3"
+RETRY_SLEEP="3"
+
+# Safety: disabled by default because ifdown/ifup is disruptive on some systems
+ENABLE_IFACE_RESET="0"
