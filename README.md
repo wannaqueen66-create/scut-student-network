@@ -1,4 +1,4 @@
-# SCUT Student Network Login Script Template / 华南理工校园网登录脚本模板
+# Campus Portal Login Script Template / 校园网 Portal 登录脚本模板
 
 A lightweight shell-based template for automating campus portal login on Linux routers, SBCs, and similar devices.
 
@@ -44,6 +44,10 @@ A lightweight shell-based template for automating campus portal login on Linux r
 - 连续失败后可选重置网卡
 - 为公开发布做了默认脱敏与安全化处理
 
+> Compatibility note / 兼容说明：this project now uses the generic names `portal_login_template.sh` and `portal_login.conf.example`. If you forked an older revision with `scut_portal_*` names, simply rename your local files or update your paths accordingly.
+>
+> 本项目现已改用更通用的文件名 `portal_login_template.sh` 和 `portal_login.conf.example`。如果你使用的是旧版 `scut_portal_*` 命名，请在本地重命名文件或同步更新路径。
+
 ## Project Structure / 项目结构
 
 ```text
@@ -51,8 +55,8 @@ A lightweight shell-based template for automating campus portal login on Linux r
 ├── README.md
 ├── LICENSE
 ├── .gitignore
-├── scut_portal_login.sh
-├── scut_portal.conf.example
+├── portal_login_template.sh
+├── portal_login.conf.example
 └── docs/
     └── 抓包与参数提取.md
 ```
@@ -84,7 +88,7 @@ You should have:
 ### 1) Copy the example config / 复制示例配置
 
 ```sh
-cp scut_portal.conf.example scut_portal.conf
+cp portal_login.conf.example portal_login.conf
 ```
 
 ### 2) Edit your local config / 修改本地配置
@@ -96,13 +100,13 @@ Fill in your own portal account and network parameters.
 ### 3) Make the script executable / 赋予执行权限
 
 ```sh
-chmod +x scut_portal_login.sh
+chmod +x portal_login_template.sh
 ```
 
 ### 4) Run manually / 手动执行
 
 ```sh
-CONFIG_FILE=./scut_portal.conf ./scut_portal_login.sh
+CONFIG_FILE=./portal_login.conf ./portal_login_template.sh
 ```
 
 ## Configuration / 配置说明
@@ -219,7 +223,7 @@ This template script works roughly as follows:
 ### Cron example / Cron 示例
 
 ```cron
-*/5 * * * * CONFIG_FILE=/path/to/scut_portal.conf /path/to/scut_portal_login.sh
+*/5 * * * * CONFIG_FILE=/path/to/portal_login.conf /path/to/portal_login_template.sh
 ```
 
 This runs the script every 5 minutes.

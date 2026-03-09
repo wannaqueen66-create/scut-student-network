@@ -1,6 +1,7 @@
 *.log
 *.swp
 .DS_Store
+portal_login.conf
 scut_portal.conf
 .env
 *.curl

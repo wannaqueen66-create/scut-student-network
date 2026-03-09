@@ -1,4 +1,4 @@
-# Example configuration for scut_portal_login.sh
+# Example configuration for portal_login_template.sh
 # Copy this file to your local machine and adjust the values for your network.
 # Do NOT commit real credentials.
 
@@ -38,7 +38,7 @@ V_VALUE="1500"
 LOGIN_SUCCESS_MSG="512"
 
 # Logging
-LOG="/tmp/scut_portal_login.log"
+LOG="/tmp/portal_login.log"
 DEBUG="0"
 
 # Retry behavior

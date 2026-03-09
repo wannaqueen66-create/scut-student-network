@@ -1,7 +1,7 @@
 #!/bin/sh
 set -u
 
-CONFIG_FILE="${CONFIG_FILE:-/etc/scut_portal.conf}"
+CONFIG_FILE="${CONFIG_FILE:-/etc/portal_login.conf}"
 
 if [ ! -f "$CONFIG_FILE" ]; then
     echo "Config file not found: $CONFIG_FILE" >&2
@@ -18,9 +18,9 @@ HOST_IP="${HOST_IP:-}"
 PORT="${PORT:-802}"
 LOGIN_URL="https://${HOST}:${PORT}${LOGIN_PATH}"
 
-LOG="${LOG:-/tmp/scut_portal_login.log}"
-LOCK_DIR="/tmp/scut_portal_login.lock"
-FAIL_COUNT_FILE="/tmp/scut_portal_fail_count"
+LOG="${LOG:-/tmp/portal_login.log}"
+LOCK_DIR="/tmp/portal_login.lock"
+FAIL_COUNT_FILE="/tmp/portal_fail_count"
 
 CURL_BIN="${CURL_BIN:-curl}"
 TIMEOUT_CHECK="${TIMEOUT_CHECK:-5}"
