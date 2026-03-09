@@ -113,9 +113,9 @@ Example config fields:
 PORTAL_USER="your-student-id-or-portal-username"
 PORTAL_PASS="your-portal-password"
 IFACE="apclix0"
-AC_NAME="wushan"
-HOST="s.scut.edu.cn"
-HOST_IP="202.38.210.131"
+AC_NAME="example_ac"
+HOST="portal.example.edu.cn"
+HOST_IP="203.0.113.10"
 PORT="802"
 ```
 
